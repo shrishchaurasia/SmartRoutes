@@ -10,15 +10,15 @@
     
     <Button
         android:layout_marginTop="200dp"
-        android:id="@+id/button"
+        android:id="@+id/process"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delivery Man" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customer" />
+        android:text="Add Gps data" />
 
 </LinearLayout>
