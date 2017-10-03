@@ -4,9 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pi.smartroute.adapters.GpsDetailAdapter;
 
@@ -44,10 +48,28 @@ public class AddGpsLocation extends AppCompatActivity {
                 String mlat = String.valueOf(lat.getText());
                 String mlon = String.valueOf(lon.getText());
                 String data = mlat+"||"+mlon;
-                mGps.add(data);
-                gpsAdapter.setGpsList(mGps);
+                gpsAdapter.setGpsList(data);
                 gpsAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.save, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.save:
+                Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return true;
     }
 }

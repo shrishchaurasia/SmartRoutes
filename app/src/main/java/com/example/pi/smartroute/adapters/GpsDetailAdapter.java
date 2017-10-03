@@ -48,8 +48,8 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
         return mGps.size();
     }
 
-    public void setGpsList(List<String> gpsList) {
-        mGps = gpsList;
+    public void setGpsList(String gpsList) {
+        mGps.add(gpsList);
     }
 
 
@@ -59,24 +59,22 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
         Button b;
         ViewHolder(final View itemView) {
             super(itemView);
-//            image = (CircleImageView) itemView.findViewById(R.id.chat_image);
             name = (TextView) itemView.findViewById(R.id.gpsData);
             b = (Button) itemView.findViewById(R.id.close);
 
 
-//            cross = (ImageView) itemView.findViewById(R.id.cross);
-//            cross.setOnClickListener(this);
         }
 
         void bind(final int listIndex) {
 
             String gps = mGps.get(listIndex);
             name.setText(gps);
-//            imageLoader.displayImage(String.valueOf(users.getUserPicture()), image);
+
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mGps.remove(listIndex);
+                    notifyDataSetChanged();
 
                 }
             });
