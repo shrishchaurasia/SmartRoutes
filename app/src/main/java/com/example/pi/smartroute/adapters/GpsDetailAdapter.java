@@ -22,8 +22,8 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
 
     List<String> mGps = new ArrayList<>();
 
-    public GpsDetailAdapter(List<String> gps) {
-        mGps = gps;
+    public GpsDetailAdapter(ListItemClickListener OnClickListener) {
+        this.mOnClickListener = OnClickListener;
     }
 
 
@@ -50,19 +50,31 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
 
     public void setGpsList(String gpsList) {
         mGps.add(gpsList);
+        notifyDataSetChanged();
     }
 
+    public void setRGpsList(int id) {
+        mGps.remove(id);
+        notifyDataSetChanged();
+    }
 
-    class ViewHolder extends RecyclerView.ViewHolder  {
+    public interface ListItemClickListener {
+
+        void onListItemClick(int id);
+    }
+
+    private ListItemClickListener mOnClickListener;
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
         TextView name;
-        Button b;
+//        Button b;
         ViewHolder(final View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.gpsData);
-            b = (Button) itemView.findViewById(R.id.close);
+//            b = (Button) itemView.findViewById(R.id.close);
 
-
+            itemView.setOnClickListener(this);
         }
 
         void bind(final int listIndex) {
@@ -70,25 +82,17 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
             String gps = mGps.get(listIndex);
             name.setText(gps);
 
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mGps.remove(listIndex);
-                    notifyDataSetChanged();
-
-                }
-            });
 
 
         }
 
 
-//        @Override
-//        public void onClick(View v) {
-//            int pos = getAdapterPosition();
-//            mOnClickListener.onListItemClick(pos);
-//
-//        }
+        @Override
+        public void onClick(View v) {
+            int pos = getAdapterPosition();
+            mOnClickListener.onListItemClick(pos);
+
+        }
 
     }
 }

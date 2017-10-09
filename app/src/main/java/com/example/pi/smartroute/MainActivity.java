@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent( MainActivity.this, ShowRoutes.class);
+                Intent intent = new Intent( MainActivity.this, AddGpsLocation.class);
                 startActivity(intent);
 
             }
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent( MainActivity.this, AddGpsLocation.class);
+                Intent intent = new Intent( MainActivity.this, AddCustomerReq.class);
                 startActivity(intent);
             }
         });

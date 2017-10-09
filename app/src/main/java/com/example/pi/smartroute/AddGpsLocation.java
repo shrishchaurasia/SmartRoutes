@@ -1,5 +1,8 @@
 package com.example.pi.smartroute;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,10 +22,9 @@ import org.w3c.dom.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddGpsLocation extends AppCompatActivity {
+public class AddGpsLocation extends AppCompatActivity implements GpsDetailAdapter.ListItemClickListener{
 
     private RecyclerView recyclerView;
-    List<String> mGps = new ArrayList<>();
     EditText lat;
     EditText lon;
     Button add;
@@ -40,8 +42,9 @@ public class AddGpsLocation extends AppCompatActivity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(false);
-        gpsAdapter = new GpsDetailAdapter(mGps);
+        gpsAdapter = new GpsDetailAdapter(this);
         recyclerView.setAdapter(gpsAdapter);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +52,7 @@ public class AddGpsLocation extends AppCompatActivity {
                 String mlon = String.valueOf(lon.getText());
                 String data = mlat+"||"+mlon;
                 gpsAdapter.setGpsList(data);
-                gpsAdapter.notifyDataSetChanged();
+
             }
         });
     }
@@ -58,18 +61,44 @@ public class AddGpsLocation extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.save, menu);
+        inflater.inflate(R.menu.route, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.save:
+            case R.id.route:
                 Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
                 break;
 
         }
         return true;
+    }
+
+    @Override
+    public void onListItemClick(final int id) {
+
+
+        CharSequence[] newItem;
+             newItem = new CharSequence[]{"View Customer Detail", "Return"};
+
+        final CharSequence[] items = newItem;
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setTitle("Select The Action");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (item == 1) {
+                    gpsAdapter.setRGpsList(id);
+                }
+                else if (item == 0) {
+                    Intent intent = new Intent( AddGpsLocation.this, CustomerDetail.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        builder.show();
     }
 }
