@@ -1,5 +1,6 @@
 package com.example.pi.smartroute;
 
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +19,7 @@ public class AddCustomerReq extends AppCompatActivity {
     EditText address;
     EditText detail;
     EditText gps;
-
+//    GoogleApiClient mGoogleApiClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,15 @@ public class AddCustomerReq extends AppCompatActivity {
         address =(EditText) findViewById(R.id.address);
         detail =(EditText) findViewById(R.id.detail);
         gps =(EditText) findViewById(R.id.gps);
+
+//        if (mGoogleApiClient == null) {
+//            mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                    .addConnectionCallbacks(this)
+//                    .addOnConnectionFailedListener(this)
+//                    .addApi(LocationServices.API)
+//                    .build();
+//        }
+//        Location currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
     }
 
