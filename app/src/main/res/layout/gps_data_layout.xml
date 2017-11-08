@@ -2,22 +2,27 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:paddingTop="30px"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <TextView
         android:id="@+id/Name"
+        android:paddingLeft="20px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="10px"
         android:textSize="14sp"
         android:text="Name" />
 
     <TextView
         android:id="@+id/Address"
+        android:paddingLeft="20px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:paddingBottom="10px"
         android:text="Address" />
 
     <LinearLayout
@@ -25,6 +30,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="20px"
+        android:paddingBottom="10px"
         android:weightSum="2"
         >
 
@@ -45,6 +52,11 @@
             />
     </LinearLayout>
 
+    <TextView
+
+        android:background="#b0b1b2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
 
 </LinearLayout>

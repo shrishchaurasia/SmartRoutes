@@ -1,24 +1,19 @@
 package com.example.pi.smartroute;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.math.BigInteger;
 
 public class AddCustomerReq extends AppCompatActivity {
 
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     EditText orderID;
     EditText name;
     EditText phone;
@@ -27,18 +22,17 @@ public class AddCustomerReq extends AppCompatActivity {
     EditText detail;
     EditText gps;
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customer_req);
-        orderID =(EditText) findViewById(R.id.OrderID);
-        name =(EditText) findViewById(R.id.name);
-        phone =(EditText) findViewById(R.id.phone);
-        email =(EditText) findViewById(R.id.email);
-        address =(EditText) findViewById(R.id.address);
-        detail =(EditText) findViewById(R.id.detail);
-        gps =(EditText) findViewById(R.id.gps);
+        orderID = (EditText) findViewById(R.id.OrderID);
+        name = (EditText) findViewById(R.id.name);
+        phone = (EditText) findViewById(R.id.phone);
+        email = (EditText) findViewById(R.id.email);
+        address = (EditText) findViewById(R.id.address);
+        detail = (EditText) findViewById(R.id.detail);
+        gps = (EditText) findViewById(R.id.gps);
 
     }
 
@@ -61,23 +55,37 @@ public class AddCustomerReq extends AppCompatActivity {
                 String maddress = address.getText().toString();
                 String mDetail = detail.getText().toString();
                 String mGps = gps.getText().toString();
-                saveData(mOrderID, mNmae, mphone,memail, maddress, mDetail, mGps);
+                saveData(mOrderID, mNmae, mphone, memail, maddress, mDetail, mGps);
                 break;
 
         }
         return true;
     }
 
+    void clear() {
+
+        orderID.setText("");
+        name.setText("");
+        phone.setText("");
+        email.setText("");
+        address.setText("");
+        detail.setText("");
+        gps.setText("");
+
+        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+    }
+
     private void saveData(String orderID, String mNmae, String mphone, String memail, String maddress, String mDetail, String mGps) {
 
         DatabaseReference myRef = database.getReference("ClientData");
-        myRef.child("users"+orderID).child("OrderID").setValue(orderID);
-        myRef.child("users"+orderID).child("Name").setValue(mNmae);
-        myRef.child("users"+orderID).child("Phone").setValue(mphone);
-        myRef.child("users"+orderID).child("Email").setValue(memail);
-        myRef.child("users"+orderID).child("Address").setValue(maddress);
-        myRef.child("users"+orderID).child("Detail").setValue(mDetail);
-        myRef.child("users"+orderID).child("GPs").setValue(mGps);
+        myRef.child("users" + orderID).child("OrderID").setValue(orderID);
+        myRef.child("users" + orderID).child("Name").setValue(mNmae);
+        myRef.child("users" + orderID).child("Phone").setValue(mphone);
+        myRef.child("users" + orderID).child("Email").setValue(memail);
+        myRef.child("users" + orderID).child("Address").setValue(maddress);
+        myRef.child("users" + orderID).child("Detail").setValue(mDetail);
+        myRef.child("users" + orderID).child("GPs").setValue(mGps);
+        clear();
 
 //        myRef.addValueEventListener(new ValueEventListener() {
 //            @Override

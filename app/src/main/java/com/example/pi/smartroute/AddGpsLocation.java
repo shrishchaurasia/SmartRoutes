@@ -104,7 +104,7 @@ public class AddGpsLocation extends AppCompatActivity implements GpsDetailAdapte
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.route:
-                Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Building...", Toast.LENGTH_SHORT).show();
                 break;
 
         }
