@@ -111,6 +111,9 @@ public class AddGpsLocation extends AppCompatActivity implements GpsDetailAdapte
         return true;
     }
 
+
+//    dsfsdfs
+
     @Override
     public void onListItemClick(final int id) {
 
