@@ -20,7 +20,7 @@ import java.util.List;
 
 public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.ViewHolder> {
 
-    List<String> mGps = new ArrayList<>();
+    List<ArrayList> mGps = new ArrayList<>();
 
     public GpsDetailAdapter(ListItemClickListener OnClickListener) {
         this.mOnClickListener = OnClickListener;
@@ -48,7 +48,7 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
         return mGps.size();
     }
 
-    public void setGpsList(String gpsList) {
+    public void setGpsList(ArrayList<String > gpsList) {
         mGps.add(gpsList);
         notifyDataSetChanged();
     }
@@ -68,10 +68,16 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
         TextView name;
+        TextView address;
+        TextView phone;
+        TextView OrderId;
 //        Button b;
         ViewHolder(final View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.gpsData);
+            name = (TextView) itemView.findViewById(R.id.Name);
+            address = (TextView) itemView.findViewById(R.id.Address);
+            phone = (TextView) itemView.findViewById(R.id.phone);
+            OrderId = (TextView) itemView.findViewById(R.id.OrderId);
 //            b = (Button) itemView.findViewById(R.id.close);
 
             itemView.setOnClickListener(this);
@@ -79,8 +85,13 @@ public class GpsDetailAdapter extends RecyclerView.Adapter<GpsDetailAdapter.View
 
         void bind(final int listIndex) {
 
-            String gps = mGps.get(listIndex);
-            name.setText(gps);
+
+
+            ArrayList l = mGps.get(listIndex);
+            name.setText(l.get(0).toString());
+            address.setText(l.get(1).toString());
+            phone.setText(l.get(2).toString());
+            OrderId.setText(l.get(3).toString());
 
 
 

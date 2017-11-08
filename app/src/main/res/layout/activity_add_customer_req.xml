@@ -8,6 +8,13 @@
     tools:context="com.example.pi.smartroute.AddCustomerReq"
     android:weightSum="1">
 
+    <EditText
+        android:id="@+id/OrderID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="OrderID" />
 
     <EditText
         android:id="@+id/name"
@@ -16,6 +23,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Name" />
+
 
     <EditText
         android:id="@+id/phone"
