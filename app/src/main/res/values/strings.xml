@@ -2,4 +2,5 @@
     <string name="app_name">SmartRoute</string>
     <string name="google_maps_key">AIzaSyDXh0xCV9GCTM-T5o-CIByOvZxmh4af2X8</string>
     <integer name="google_play_services_version">6</integer>
+    <string name="title_activity_maps">Map</string>
 </resources>
